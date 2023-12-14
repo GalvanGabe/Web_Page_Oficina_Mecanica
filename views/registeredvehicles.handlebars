@@ -1,0 +1,40 @@
+<section class="registered-vehicles py-4">
+    <nav class="text-white bg-gradient ps-3" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-chevron rounded-3">
+            <li class="breadcrumb-item">
+                <i class="fa-solid fa-warehouse fa-xl"></i>
+                <span class="visually-hidden">Home</span>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-white fw-semibold text-decoration-none" href="/">Painel de Serviços</a>
+            </li>
+            <li class="text-white breadcrumb-item active" aria-current="page">Veículos Cadastrados</li>
+        </ol>
+    </nav>
+    <div class="container">
+        <div class="bd-example-snippet bd-code-snippet">
+            <div class="bd-example m-0 border-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Veículo</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Ano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each vehicles}}
+                            <tr>
+                                <th scope="row"><i class="fa-solid fa-car fa-lg"></i> {{this.id}}</th>
+                                <td>{{this.model}}</td>
+                                <td>{{this.license_plate}}</td>
+                                <td>{{this.year}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>   
+</section>

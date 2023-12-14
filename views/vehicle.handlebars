@@ -1,0 +1,119 @@
+<section class="customer py-4">
+    <nav class="bg-gradient ps-3" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-chevron rounded-3">
+            <li class="breadcrumb-item">
+                <i class="fa-solid fa-warehouse fa-xl"></i>
+                <span class="visually-hidden">Home</span>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="fw-semibold text-decoration-none" href="/">Painel de Serviços</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="fw-semibold text-decoration-none" href="/registeredcustomers">Clientes Cadastrados</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="fw-semibold text-decoration-none" href="/customer/{{vehicle.CustomerId}}">{{vehicle.owner}}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{vehicle.model}}</li>
+        </ol>
+    </nav>
+    <div class="d-block">
+        <h4 class="mb-3 text-center">Dados do Veículo</h4>
+        <div class="container list-group list-group-horizontal-lg pb-3">
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-industry fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Marca:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.brand}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-car fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Modelo:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.model}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-car-battery fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Motor:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.motor}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-rug fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Placa:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.license_plate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-calendar fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Ano:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.year}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col list-group-item d-flex gap-3 py-3">
+                <i class="fa-solid fa-palette fa-2xl pt-4"></i>
+                <div class="d-flex gap-2 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Cor:</h6>
+                        <p class="mb-0 opacity-75">{{vehicle.color}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div>
+                <a class="btn btn-primary rounded-circle p-3 lh-1 me-1" href="/vehicle/{{vehicle.id}}/edit">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="visually-hidden">Edit</span>
+                </a>
+            </div>
+            <form action="/registervehicle/delete" method="post">
+                <input type="hidden" name="CustomerId" value="{{vehicle.CustomerId}}">
+                <input type="hidden" name="id" value="{{vehicle.id}}">
+                <button class="btn btn-danger rounded-circle p-3 lh-1 ms-1" type="submit">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span class="visually-hidden">Delete</span>
+                </button>
+            </form>
+        </div>
+        <hr>
+        <h4 class="text-white d-block pt-2 mb-2 text-center">Serviços Realizados no Veículo</h4>
+        <div class="d-flex justify-content-center align-items-center">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/vehicle/{{vehicle.id}}/addservice">Adicionar Serviço</a>
+        </div>
+        <div class="text-white row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-0 ps-4 pe-4">
+            {{#each vehicle.Services}}
+                <div class="bg-dark bg-opacity-50 d-flex align-items-center">
+                    <i class="fa-solid fa-screwdriver-wrench fa-2xl ps-2 pe-3"></i>
+                    <div>
+                        <h3 class="text-white fw-bold mb-0 fs-3">{{this.type}}</h3>
+                        <p class="fs-5">{{this.km}}km <br> {{this.date}}</p>
+                        <form action="/addservice/delete" method="post">
+                            <input type="hidden" name="VehicleId" value="{{this.VehicleId}}">
+                            <input type="hidden" name="id" value="{{this.id}}">
+                            <button class="btn btn-danger rounded-circle p-2 lh-1" type="submit">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <span class="visually-hidden">Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

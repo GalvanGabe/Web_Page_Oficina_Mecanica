@@ -1,0 +1,45 @@
+<section class="register-service py-4">
+  <nav class="bg-gradient ps-3" aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-chevron rounded-3">
+      <li class="breadcrumb-item">
+        <i class="fa-solid fa-warehouse fa-xl"></i>
+        <span class="visually-hidden">Home</span>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/">Painel de Serviços</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/registeredcustomers">Clientes Cadastrados</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/customer/{{vehicle.CustomerId}}">{{vehicle.owner}}</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/vehicle/{{vehicle.id}}">{{vehicle.model}}</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Cadastrar Serviço</li>
+    </ol>
+  </nav>
+  <div class="col-md-7 col-lg-8">
+    <h4 class="mb-3 text-center">Detalhes do Serviço</h4>
+    <form class="ps-5 ms-5" action="/addservice/create" method="post">
+      <input type="hidden" name="VehicleId" value="{{vehicle.id}}">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="type" class="form-label">Tipo de Serviço</label>
+          <input type="text" name="type" class="form-control" id="type" maxlength="55" placeholder="Digite o tipo de serviço realizado" title="Informe o serviço realizado" autofocus required>
+        </div>
+        <div class="col-sm-3">
+          <label for="km" class="form-label">Km do Veículo</label>
+          <input type="number" name="km" class="form-control" id="km" inputmode="numeric" placeholder="Digite a km do veículo" title="Informe a km do veículo no dia do serviço" required>
+        </div>
+        <div class="col-sm-3">
+          <label for="date" class="form-label">Data da Realização do Serviço</label>
+          <input type="date" name="date" class="form-control" id="date" inputmode="numeric" title="Informe a data de realização do serviço" required>
+        </div>
+      </div>
+      <hr class="my-4">
+      <button class="w-100 btn btn-primary btn-lg" type="submit">Cadastrar</button>
+    </form>
+  </div>
+</section>

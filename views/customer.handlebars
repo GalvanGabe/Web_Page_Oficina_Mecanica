@@ -1,0 +1,118 @@
+<section class="customer py-4">
+    <nav class="bg-gradient ps-3" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-chevron rounded-3">
+            <li class="breadcrumb-item">
+                <i class="fa-solid fa-warehouse fa-xl"></i>
+                <span class="visually-hidden">Home</span>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="fw-semibold text-decoration-none" href="/">Painel de Serviços</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="fw-semibold text-decoration-none" href="/registeredcustomers">Clientes Cadastrados</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{customer.name}}</li>
+        </ol>
+    </nav>
+    <div class="d-block">
+        <h4 class="mb-3 text-center">Dados do Proprietário do Veículo</h4>
+        <div class="container list-group list-group-horizontal-xl pb-3">
+            
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-user fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Nome:</h6>
+                            <p class="mb-0 opacity-75">{{customer.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-id-card fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">CPF:</h6>
+                            <p class="mb-0 opacity-75">{{customer.cpf}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-envelope fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Email:</h6>
+                            <p class="mb-0 opacity-75">{{customer.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-calendar-plus fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Idade:</h6>
+                            <p class="mb-0 opacity-75">{{customer.age}} anos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-phone fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Telefone:</h6>
+                            <p class="mb-0 opacity-75">{{customer.phone}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-city fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Cidade:</h6>
+                            <p class="mb-0 opacity-75">{{customer.city}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col list-group-item d-flex gap-3 py-3">
+                    <i class="fa-solid fa-flag fa-2xl pt-4"></i>
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Estado:</h6>
+                            <p class="mb-0 opacity-75">{{customer.state}}</p>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="d-flex justify-content-center">
+            <div>
+                <a class="btn btn-primary rounded-circle p-3 lh-1 me-1" href="/customer/{{customer.id}}/edit">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="visually-hidden">Edit</span>
+                </a>
+            </div>
+            <form action="/registercustomer/delete" method="post">
+                <input type="hidden" name="id" value="{{customer.id}}">
+                <button class="btn btn-danger rounded-circle p-3 lh-1 ms-1" type="submit">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span class="visually-hidden">Delete</span>
+                </button>
+            </form>
+        </div>
+        <hr>
+        <h4 class="text-white d-block pt-2 mb-2 text-center">Veículos Cadastrados</h4>
+        <div class="d-flex justify-content-center align-items-center">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/customer/{{customer.id}}/registervehicle">Adicionar Veículo</a>
+        </div>
+        <div class="text-white row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-0 ps-4 pe-4">
+            {{#each customer.Vehicles}}
+                <div class="bg-dark bg-opacity-50 d-flex align-items-center">
+                    <i class="fa-solid fa-car fa-2xl ps-2 pe-3"></i>
+                    <div>
+                        <h3 class="text-white fw-bold mb-0 fs-3"><a href="/vehicle/{{this.id}}">{{this.model}}</a></h3>
+                        <p class="fs-5">{{this.license_plate}} <br> {{this.year}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

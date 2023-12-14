@@ -1,0 +1,55 @@
+<section class="register-vehicle py-4">
+  <nav class="bg-gradient ps-3" aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-chevron rounded-3">
+      <li class="breadcrumb-item">
+        <i class="fa-solid fa-warehouse fa-xl"></i>
+        <span class="visually-hidden">Home</span>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/">Painel de Serviços</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/registeredcustomers">Clientes Cadastrados</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class=" fw-semibold text-decoration-none" href="/customer/{{customer.id}}">{{customer.name}}</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Cadastrar Veículo</li>
+    </ol>
+  </nav>
+  <div class="col-md-7 col-lg-8">
+    <h4 class="mb-3 text-center">Dados do Veículo</h4>
+    <form class="ps-5 ms-5" action="/registervehicle/create" method="post">
+      <input type="hidden" name="CustomerId" value="{{customer.id}}">
+      <input type="hidden" name="owner" value="{{customer.name}}">
+      <div class="row g-3">
+        <div class="col-sm-5">
+          <label for="brand" class="form-label">Marca</label>
+          <input type="text" name="brand" class="form-control" id="brand" maxlength="25" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ-' ]+$" placeholder="Digite a marca do veículo" title="Informe o nome da montadora" autofocus required>
+        </div>
+        <div class="col-sm-5">
+          <label for="model" class="form-label">Modelo</label>
+          <input type="text" name="model" class="form-control" id="model" maxlength="25" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ-' ]+$" placeholder="Digite o modelo do veículo" title="Informe o modelo do veículo" required>
+        </div>
+        <div class="col-sm-2">
+          <label for="motor" class="form-label">Motor</label>
+          <input type="number" name="motor" class="form-control" id="motor" step="0.1" pattern="\d{3}" maxlength="3" inputmode="numeric" placeholder="1.0" required>
+        </div>
+        <div class="col-4">
+          <label for="license_plate" class="form-label">Placa</label>
+          <input type="text" name="license_plate" class="form-control" id="license_plate" maxlength="7" title="Informe a placa do veículo" placeholder="AAA9A99" required>
+        </div>
+        <div class="col-4">
+          <label for="year" class="form-label">Ano</label>
+          <input type="number" name="year" class="form-control" id="year" inputmode="numeric" title="Informe o ano de fabricação do veículo" placeholder="2000" required>
+        </div>
+        <div class="col-sm-4">
+          <label for="color" class="form-label">Cor</label>
+          <input type="text" name="color" class="form-control" id="color" maxlength="25" placeholder="Digite a cor do veículo" title="Informe a cor do veículo" required>
+        </div>
+      </div>
+      <hr class="my-4">
+      <button class="w-100 btn btn-primary btn-lg" type="submit">Cadastrar</button>
+    </form>
+  </div>
+</section>
